@@ -1,0 +1,130 @@
+@keyframes pulse{
+    0%{
+      opacity: 0;
+      @include transform(scale(1));
+    }
+    
+    50%{
+      opacity: 1;
+      @include transform(scale(1.1));
+    }
+    
+    100%{
+      opacity: 0;
+      @include transform(scale(1.2));
+    }
+  }
+  
+  @-webkit-keyframes pulse{
+    0%{
+      opacity: 0;
+      @include transform(scale(1));
+    }
+    
+    50%{
+      opacity: 1;
+      @include transform(scale(1.2));
+    }
+    
+    100%{
+      opacity: 0;
+      @include transform(scale(1.4));
+    }
+  }
+.hvr-pulse{
+    @include animation(pulse 3s linear infinite);
+}
+
+.hvr-shutter-in-horizontal {
+  position: relative;
+  overflow: hidden;
+  @include transform(perspective(1px) translateZ(0));
+  @include transition(all, 0.5s);
+
+  &:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      @include transform(scaleX(1));
+      @include transition(transform, 0.5s);
+  }
+
+  &:hover{
+      &:before {
+          @include transform(scaleX(0));
+      }
+  }
+
+  &--pink{
+    // background: rgba($color: $bttn-color, $alpha: 1);
+    // color: $white;
+
+    &:hover{
+      // color: $active-color;
+      background: rgba($color: $white, $alpha: 1);
+    }
+
+    &:before {
+      // background: rgba($color: $bttn-color, $alpha: 1);
+    }
+  }
+  
+  &--cream{
+    // background: rgba($color: $pbtn1, $alpha: 1);
+    // color: $white;
+
+    &:hover{
+      // color: $active-color;
+      background: rgba($color: $white, $alpha: 1);
+    }
+
+    &:before {
+      // background: rgba($color: $pbtn1, $alpha: 1);
+    }
+  }
+
+
+
+}
+
+@keyframes bounce {
+  0%, 100%, 20%, 50%, 80% {
+      -webkit-transform: translateY(0);
+      -ms-transform:     translateY(0);
+      transform:         translateY(0)
+  }
+  40% {
+      -webkit-transform: translateY(-30px);
+      -ms-transform:     translateY(-30px);
+      transform:         translateY(-30px)
+  }
+  60% {
+      -webkit-transform: translateY(-15px);
+      -ms-transform:     translateY(-15px);
+      transform:         translateY(-15px)
+  }
+}
+
+.bounce_button{
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: bounce;
+  -moz-animation-name: bounce;
+
+  &:hover {
+    -webkit-animation-play-state:paused;
+    -moz-animation-play-state:paused;
+    -o-animation-play-state:paused;
+    animation-play-state:paused;
+  }
+}

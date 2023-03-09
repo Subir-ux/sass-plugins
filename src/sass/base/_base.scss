@@ -1,0 +1,531 @@
+html, body, p{
+    font-family: $montserrat;
+    font-weight: 400;
+    color: $gray1;
+    @include font-size($p-font-sizes);
+    -webkit-font-smoothing: antialiased;
+}
+body{
+    // background: $white;
+    &.o-fixedBody{
+        position: fixed;
+        &:before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9;
+        }
+    }
+}
+a{
+    text-decoration: none;
+    &:hover{
+        text-decoration: none;
+    }
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: $montserrat;
+    margin: 0 0 20px;
+    color: $white;
+    line-height: normal;
+    -webkit-font-smoothing: antialiased;
+}
+h1{
+    @include font-size($h1-font-sizes);
+}
+h2, .h2{
+    @include font-size($h2-font-sizes);
+}
+h3, .h3{
+    @include font-size($h3-font-sizes);
+}
+h4, .h4{
+    @include font-size($h4-font-sizes);
+}
+h5, .h5{
+    @include font-size($h5-font-sizes);
+}
+h6, .h6{
+    @include font-size($h6-font-sizes);
+}
+.text-uppercase{
+    text-transform: uppercase;
+}
+.overflow-blocked
+{
+    overflow: hidden;
+}
+.letter-spacing{
+    @include modifier('07') {
+        letter-spacing: -0.07px;
+    }
+    @include modifier('09') {
+        letter-spacing: -0.09px;
+    }
+    @include modifier('16') {
+        letter-spacing: 1.6px;
+    }
+    @include modifier('024') {
+        letter-spacing: -0.24px;
+    }
+    @include modifier('32') {
+        letter-spacing: 3.2px;
+    }
+}
+.opacity{
+    @include modifier('44') {
+        opacity: 0.44;
+    }
+}
+ul{
+    li{
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+a, input, button, h1, h2, h3, h4, h5, h6, svg, input[type="text"], input[type="search"], input[type="file"], input[type="time"], input[type="date"], input[type="tel"], input[type="email"], input[type="password"], input[type="url"], textarea, select{
+    @include transition(all, 0.5s, ease-out);
+    -webkit-font-smoothing: antialiased;
+}
+input, button{
+    &:hover, &:focus{
+        text-decoration: none;
+        outline: none;
+    }
+}
+a{
+    // color: $input-border;
+    font-weight: 400;
+    &:hover{
+        color: $white;
+        text-decoration: none;
+    }
+}
+
+#overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    content: '';
+    z-index: 1;
+    background: rgba($color: $black, $alpha:  0.81);
+    height: 100vh;
+    @include size(100%);
+    @include transition(all, 0.5s, ease-out);
+}
+p{
+    a{
+        // color: $link-color;
+        font-weight: 400;
+        text-decoration: underline;
+
+        &:hover{
+            color: $white;
+            text-decoration: none;
+        }
+    }
+
+    @include media("<=ltablet") {
+        margin: 0 0 15px;
+    }
+}
+span.error, span.valid{
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    padding: 0 0 0 10px;
+    font-family: $montserrat;
+
+}
+span.error{
+    // color: $error;
+    text-align: right;
+}
+span.valid{
+    // color: $green3;
+    text-align: right;
+}
+.overlay{
+    position: relative;
+
+    &:after{
+        top: 0;
+        left: 0;
+        content: '';
+        @include size(100%);
+        position: absolute;
+        z-index: 2;
+        opacity: .2;
+        @include borderradius(15px);
+    }
+
+    @include modifier('fullwhite') {
+        &:after{
+            background: rgba($color: $white, $alpha: 0.9);
+        }
+    }
+
+    @include modifier('fullBlack') {
+        &:after{
+            // @include gradient(rgba($black, 0.49), rgba($black, 1));
+            background-color: $black;
+        }
+    }
+}
+.borderBottom{
+    position: relative;
+
+    &:after{
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 140px;
+        height: 1px;
+        border: 1px dashed $white;
+        position: absolute;
+        z-index: 1;
+    }
+
+    &--full{
+        &:after{
+            width: 100%;
+        }
+    }
+}
+.blank{
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include size(100%);
+    z-index: 1;
+}
+.clear{
+    width: 100%;
+    float: left;
+}
+.dividerSide{
+    margin: 0 0 30px;
+    
+    &:before, &:after{
+        position: absolute;
+        top: 50%;
+        content: '';
+        width: 129px;
+        height: 1px;
+        border: 1px dashed $white;
+        opacity: 0.4;
+        @include transform(translateY(-50%));
+
+        @include media("<=ltablet") {
+            display: none !important;
+        }
+    }
+    &:before{
+        left: 100%;
+    }
+    &:after{
+        right: 100%;
+    }
+
+    h1, h2, h3, h4, h5, h6{
+        padding: 0 15px;
+        margin: 0 !important;
+    }
+
+    @include media("<=ltablet") {
+        margin: 0 0 10px;
+    }
+}
+.container{
+    @include media(">mdesktop") {
+        max-width: 1170px;
+    }
+    @include media(">=ldesktop") {
+        max-width: 1560px;
+    }
+    @include media(">=exldesktop") {
+        // max-width: 1748px;
+        max-width: 1632px;
+    }
+    @include media(">=mac") {
+        max-width: 1810px;
+    }
+    @include media(">=lmac") {
+        max-width: 2100px;
+    }
+
+    &--postLogin{
+        @include media("<=desktop") {
+            max-width: 100%;
+        }
+    }
+    &--location-select{
+        @include media(">ltablet") {
+            max-width:800px;
+        }
+        @include media(">defaultdesktop") {
+            max-width:1098px;
+        }
+    }    
+    &--find-escort-model{
+        @include media(">defaultdesktop") {
+            max-width:1300px;
+        }
+    }
+    &--advert{
+        @include media(">desktop"){
+            max-width: 1000px;
+        } 
+        @include media(">ldesktop"){
+            max-width: 1390px;
+        }
+        @include media(">=mac"){
+            max-width: 1690px;
+        }
+    }
+}
+.bannersubheading, .subheading{
+    font-size: 16px;
+    color: $white;
+    font-weight: 400;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 15px;
+    font-style: italic;
+
+    @include media("<=ltablet") {
+        font-size: 15px;
+        margin-bottom: 0;
+    }
+}
+.boxshadow{
+    @include modifier('active1') {
+        @include boxshadow(0px, 3px, 6px, 0px, rgba($black, 0.29));
+    }
+}
+.alignMiddle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.o-commonSection{
+    padding: 51px 0;
+
+    @include media("<=desktop") {
+        padding: 31px 0;
+    }
+
+    &--innerPage{
+        @include media("<=desktop") {
+            padding: 0;
+        }
+    }
+}
+.slick-slide{
+    &:hover, &:focus{
+        outline: none;
+    }
+}
+
+.slick-arrow{
+    width: 30px !important;
+    height: 30px !important;
+    z-index: 2;
+    &:before{
+        font-size: 32px !important;
+        color: rgba($color: $white, $alpha:  0.37) !important;
+    }
+    // .slickIcon{
+    //     width: 12px;
+    //     height: 23px;
+    //     fill: $white;
+    // }
+
+    @include media(">=mac") {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}
+
+.font100{
+    font-weight: 100;
+}
+.font200{
+    font-weight: 200;
+}
+.font300{
+    font-weight: 300;
+}
+.font400{
+    font-weight: 400;
+}
+.font500{
+    font-weight: 500;
+}
+.font600{
+    font-weight: 600;
+}
+.font7600{
+    font-weight: 700;
+}
+.font800{
+    font-weight: 800;
+}
+.font900{
+    font-weight: 900;
+}
+.commonSectionInner{
+    @include modifier('banner-slider'){
+        padding-top: 60px;
+    }
+    &:not(:last-child){
+        // padding: 0 0 101px;
+        @include media("<=ltablet") {
+            padding-bottom: 51px;
+        }
+    }
+
+    ul, ol{
+        padding: 0 0 15px;
+        overflow: hidden;
+
+        li{
+            position: relative;
+            padding-left: 35px;
+            @extend .clear;
+            
+            &:before{
+                background: url(../images/arrow-dropright-circle.svg) no-repeat center center / cover;
+                position: absolute;
+                top: 4px;
+                left: 0;
+                content: '';
+                @include size(20px);
+            }
+
+            &:not(:last-child){
+                padding-bottom: 15px;
+            }
+        }
+    }
+}
+.boxImageWrap{
+    height: 350px;
+    overflow: hidden;
+    border: 1px solid $black;
+
+    .boxImage{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-attachment: fixed !important;
+        @include size(100%);
+        @include transition(all .5s);
+        @include transform(translateZ(0) scale(1));
+    }
+    
+    .boxContent{
+        color: $white;
+        z-index: 2;
+        left: 55px;
+        bottom: 15px;
+
+        @include media("<=ltablet") {
+            left: 15px;
+        }
+    }
+
+    .boxImageWrapBlank{
+        z-index: 3;
+    }
+    
+    &:hover{
+        .boxImage{
+            @include transform(translateZ(0) scale(1.2));
+            @include transition(all .5s);
+        }
+    }
+    
+    @include media(">=ldesktop") {
+        height: 470px;
+    }
+    
+    @include media("<=desktop") {
+        height: 250px;
+    }
+}
+.colorWhite{
+    color: $white;
+}
+.col{
+    &-10{
+        @include media(">mac") {
+            flex: 0 0 58.333333%;
+            max-width: 58.333333%;
+        }
+    }
+}
+
+
+.columns{
+    @include modifier('md') {
+        @include modifier('3') {
+            -moz-column-count: 3;
+            -webkit-column-count: 3;
+            column-count: 3;
+        }
+        @include modifier('4') {
+            -moz-column-count: 4;
+            -webkit-column-count: 4;
+            column-count: 4;
+        }
+        @include modifier('6') {
+            -moz-column-count: 6;
+            -webkit-column-count: 6;
+            column-count: 6;
+        }
+    }
+}
+
+
+
+
+/*======================== */
+
+
+.common-margin{
+    margin-top: 15px;
+}
+
+picture{
+    width: 100%;
+    height: 100%;
+}
+
+.pl-100{
+    padding-left: 81px;
+    @include media(">ltablet"){
+        padding-left: 91px;
+    }
+    @include media(">=mmmmdesktop"){
+        padding-left: 101px;
+    }
+    @include media(">=defaultdesktop"){
+        padding-left: 111px;
+    }
+    @include media(">=mac"){
+        padding-left: 123px;
+    }
+}
+.pr-21{
+    padding-right: 21px;
+}
+
+.mt-18{
+    margin-top:18px;
+}

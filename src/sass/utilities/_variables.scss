@@ -1,0 +1,288 @@
+//Google fonts api
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+// Fontawosome Icon Library Import
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css');
+@import url("https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css");
+
+$montserrat: 'Montserrat', sans-serif;
+
+$imagePath : "images";
+$fontPath : "fonts";
+$fontawesome : "FontAwesome";
+
+// Font weight
+$light: 300;
+$regular: 400;
+$meduim: 500;
+$semi-bold: 600;
+$bold: 700;
+
+
+//@include media("<=phone") {}
+//@include media(">phone") {}
+//@include media(">mphone") {}
+//@include media(">lphone") {}
+//@include media(">tablet") {}
+//@include media(">ltablet") {}
+//@include media(">=815px", "<desktop") {}
+//@include media(">=desktop") {}
+//@include media("retina2x") {}
+$breakpoints: (
+  'phone': 319px,
+  'sphone': 320px,
+  'mphone': 375px,
+  'mmphone': 414px,
+  'smphone': 539px,
+  'ssmphone': 576px,
+  'lphone': 639px,
+  'tablet': 768px,
+  'ltablet': 991px,
+  'desktop': 1024px,
+  'mdesktop': 1199px,
+  'mmdesktop': 1300px,
+  'mmmdesktop': 1400px,
+  'mmmmdesktop': 1500px,
+  'ldesktop': 1600px,
+  'defaultdesktop': 1700px,
+  'exldesktop': 1800px,
+  'mac': 1919px,
+  'mmac': 1921px,
+  'lmac': 2200px,
+) !default;
+
+
+$media-expressions: (
+  'screen': 'screen',
+  'print': 'print',
+  'handheld': 'handheld',
+  'retina2x': (
+    '(-webkit-min-device-pixel-ratio: 2)',
+    '(min-resolution: 192dpi)'
+  ),
+  'retina3x': (
+    '(-webkit-min-device-pixel-ratio: 3)',
+    '(min-resolution: 350dpi)'
+  )
+) !default;
+
+
+$unit-intervals: (
+  'px': 1,
+  'em': 0.01,
+  'rem': 0.1
+) !default;
+
+@mixin media($conditions...) {
+  @for $i from 1 through length($conditions) {
+    $conditions: set-nth($conditions, $i, parse-expression(nth($conditions, $i)));
+  }
+
+  $branches: get-query-branches($conditions);
+  $query: '';
+
+  @each $branch in $branches {
+    @if (str-length($query) != 0) {
+      $query: $query + ', ';
+    }
+
+    $query: $query + $branch;
+  }
+
+  @media #{$query} {
+    @content;
+  }
+}
+
+//Font size responsive
+@mixin font-size($fs-map) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+      @if $fs-breakpoint==null {
+          font-size: $fs-font-size;
+          line-height: $fs-font-size + 5px;
+      } @else {
+          @media screen and (min-width: $fs-breakpoint) {
+              font-size: $fs-font-size;
+              line-height: $fs-font-size + 10px;
+          }
+      }
+  }
+}
+
+$large-font-sizes: (
+  null: 26px,
+  320px: 26px,
+  768px: 30px,
+  1024px: 30px,
+  1600px: 50px,
+  1920px: 60px,
+);
+// header font size.
+$h1-font-sizes: (
+  null: 35px,
+  320px: 35px,
+  768px: 40px,
+  1024px: 40px,
+  1600px: 55px,
+  1920px: 74px,
+);
+$h2-font-sizes: (
+  null: 30px,
+  320px: 30px,
+  768px: 30px,
+  1024px: 30px,
+  1600px: 45px,
+  1920px: 45px,
+);
+$title-font-sizes: (
+  null: 25px,
+  320px: 25px,
+  768px: 25px,
+  1024px: 25px,
+  1600px: 35px,
+  1920px: 35px,
+);
+$h3-font-sizes: (
+  null: 25px,
+  320px: 25px,
+  768px: 30px,
+  1024px: 30px,
+  1600px: 30px,
+  1920px: 30px,
+);
+$h4-font-sizes: (
+  null: 19px,
+  320px: 19px,
+  768px: 23px,
+  1024px: 23px,
+  1600px: 23px,
+  1920px: 23px,
+);
+$h5-font-sizes: (
+  null: 22px,
+  320px: 22px,
+  768px: 23px,
+  1024px: 23px,
+  1600px: 23px,
+  1920px: 25px,
+);
+
+$heading-font-sizes: (
+  null: 22px,
+  320px: 22px,
+  768px: 24px,
+  1024px: 24px,
+  1600px: 24px,
+  1920px: 27px,
+);
+$h6-font-sizes: (
+  null: 18px,
+  320px: 18px,
+  1024px: 18px,
+  1920px: 18px,
+);
+$medium-font-sizes: (
+  null: 25px,
+  320px: 25px,
+  768px: 30px,
+  1024px: 34px,
+  1600px: 34px,
+  1920px: 34px,
+);
+$bttn-font-sizes: (
+  null: 14px,
+  320px: 14px,
+  768px: 14px,
+  1024px: 14px,
+  1600px: 14px,
+  1920px: 16px,
+);
+$btttn-font-sizes: (
+  null: 18px,
+  320px: 18px,
+  768px: 18px,
+  992px: 14px,
+  1024px: 14px,
+  1600px: 14px,
+  1920px: 16px,
+);
+// paragraph
+$p-font-sizes: (
+  null: 13px,
+  320px: 13px,
+  322px: 14px,
+  768px: 14px,
+  1024px: 14px,
+  1600px: 16px,
+  1920px: 16px,
+);
+$p-modal-font-sizes: (
+  null: 12px,
+  320px: 12px,
+  322px: 12px,
+  768px: 12px,
+  1024px: 14px,
+  1600px: 14px,
+  1920px: 14px,
+);
+$link-font-sizes: (
+  null: 14px,
+  320px: 14px,
+  1024px: 14px,
+  1920px: 14px,
+);
+$sidebar-menulink-font-sizes: (
+  null: 11px,
+  320px: 11px,
+  1024px: 11px,
+  1920px: 12px,
+);
+$footer-sidebar-font-sizes: (
+  null: 11px,
+  320px: 11px,
+  1024px: 11px,
+  1920px: 11px,
+);
+$logo-sidebar-font-sizes: (
+  null: 16px,
+  320px: 16px,
+  1024px: 16px,
+  1920px: 16px,
+);
+$c-card-font-sizes: (
+  null: 18px,
+  320px: 18px,
+  1024px: 18px,
+  1920px: 21px,
+);
+$c-card-large-font-sizes: (
+  null: 24px,
+  320px: 24px,
+  1024px: 24px,
+  1920px: 32px,
+);
+$table-head-font-sizes: (
+  null: 18px,
+  320px: 18px,
+  1024px: 18px,
+  1920px: 22px,
+);
+
+$table-data-font-sizes: (
+  null: 14px,
+  320px: 14px,
+  1024px: 14px,
+  1920px: 16px,
+);
+$footer-text-font-sizes: (
+  null: 12px,
+  320px: 12px,
+  1024px: 12px,
+  1920px: 12px,
+);
+$footer-logo-font-sizes: (
+  null: 16px,
+  320px: 16px,
+  1024px: 16px,
+  1920px: 16px,
+);
